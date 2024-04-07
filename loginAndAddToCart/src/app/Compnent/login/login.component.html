@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-left shadow-lg rounded p-3 m-3">
+      <h4 class="display-5 m-5 text-center">Login</h4>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group m-3">
+          <label for="email" class="lead fs-6 ps-2">Email</label>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            formControlName="email"
+            class="form-control my-2"
+          />
+        </div>
+        <small
+          class="mx-4 text-danger"
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+        >
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">
+            Email is required</small
+          >
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">
+            Invalid Email Format
+          </small>
+        </small>
+
+        <div class="form-group m-3">
+          <label for="password" class="lead fs-6 ps-2">Password</label>
+          <input
+            type="password"
+            placeholder="Enter Email"
+            formControlName="password"
+            class="form-control my-2"
+          />
+        </div>
+
+        <small
+          class="mx-4 text-danger"
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">
+            Password is required
+          </small>
+
+          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">
+            Password must be at least 8 characters
+          </small>
+        </small>
+
+        <div class="text-center">
+          <button class="btn btn-secondary my-4 px-5">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

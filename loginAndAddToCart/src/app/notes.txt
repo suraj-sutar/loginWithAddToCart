@@ -1,0 +1,33 @@
+--> first create login component:
+        --> add 2 labels and 2 input for email and password
+        --> and add 1 button for login
+        --> this form create using reactive form
+        --> then add validation 
+                --> for email add 2 validator like : required and email
+                --> for password add 2 validator like : required and minlength
+
+--> second create data.json:
+        --> inside that create number .of product details with id , name, description adn quantity
+
+--> then create product.model.js:
+        --> inside that create one interface or class with product property
+
+--> then craete product.service.ts:
+        --> first inject the HttpClient into that constructor for use HttpClent method to 
+        send Http requests
+        --> then add API url Endpoint
+        --> to store the count of item we are user BehaviorSubject.
+                cartItemCountSubject = new BehaviorSubject<number>(0);
+        --> then create new observale using cartItemCountSubject
+        --> then fetch data from that specific ApiUrl Endpoint using get:
+
+                getProduct(): Observable<Product[]> {
+                        return this._httpClient.get<Product[]>(this.apiUrl);
+                }
+        --> then update the product using put method of HttpClient:
+                --> it takes a product object as a parameter
+
+                        updateProduct(product: Product): Observable<Product[]> {
+                                const newUrl = `${this.apiUrl}/${product.id}`;
+                                return this._httpClient.put<Product[]>(newUrl, product);
+                        }
